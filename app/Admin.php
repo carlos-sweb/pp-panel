@@ -34,6 +34,14 @@ class Admin{
     echo $this->minifer(Template::instance()->render('admin/home.html'));
   }
 
+
+  // -----------------------------------------------------------------------
+  public function ide($f3){
+    $f3->set("css",$this->css_base);
+    $f3->set("rand",rand(1,550505050050500));
+    echo $this->minifer(Template::instance()->render('admin/ide.html'));
+  }
+
   public function logout($f3){
 
         $f3->clear("SESSION.user_id");
