@@ -1,0 +1,19 @@
+{
+  "name": "delivery",
+  "version": "1.0.0",
+  "description": "delivery framework",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.3",
+    "animate.css": "^4.1.1",
+    "axios": "^0.21.1",
+    "normalize.css": "^8.0.1",
+    "pp-drawer.js": "^1.0.5",
+    "pp-router.js": "^1.0.7"
+  }
+}

@@ -1,0 +1,6 @@
+header:
+  -bg: graycolor400
+content:
+  -bg: white
+footer:
+  -bg: graycolor400
