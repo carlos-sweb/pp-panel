@@ -21,31 +21,47 @@
 						</div>
 				</div>
 			</div>
+
+		<form action="/install/setup-config" method="post" >
 				<!--content-->
 				<div>
-
-					<div class="w-full flex flex-col pt-3 pb-1 pl-3 pr-3 box-border">
-						<input class="box-boder bg-white rounded-md rounded-md:focus p-2.5 border-2 border-blue100 border-blue300:focus border-solid outline-none:focus outline-offset-2:focus text-bluegray800" type="text" placeholder="Nombre de la Base de Datos" autocomplete="off" autocapitalize >
+					<!--field-->
+					<div class="w-full flex flex-col pt-3 pb-1 pl-3 pr-3 box-border flex ">
+						<p class="fixed pl-2 box-border mt-3"  ><i class="fas fa-database fa-md text-lightblue800"></i></p>
+						<input name="db_name" class="box-boder bg-white rounded-md rounded-md:focus p-2.5 pl-8 border-2 border-blue100 border-blue300:focus border-solid outline-none:focus outline-offset-2:focus text-bluegray800" type="text" placeholder="Base de Datos" autocomplete="off" autocapitalize value="stix" >
 					</div>
+					<!--field-->
 
-					<div class="w-full flex flex-col pt-3 pb-1 pl-3 pr-3 box-border">
-						<input class="box-boder bg-white rounded-md rounded-md:focus p-2.5 border-2 border-blue100 border-blue300:focus border-solid outline-none:focus outline-offset-2:focus text-bluegray800" type="text" placeholder="Usuario" autocomplete="off" autocapitalize>
+					<!--field-->
+					<div class="w-full flex flex-col pt-3 pb-1 pl-3 pr-3 box-border flex ">
+						<p class="fixed pl-2 box-border mt-3"  ><i class="fas fa-user fa-md text-lightblue800"></i></p>
+						<input name="db_user" class="box-boder bg-white rounded-md rounded-md:focus p-2.5 pl-8 border-2 border-blue100 border-blue300:focus border-solid outline-none:focus outline-offset-2:focus text-bluegray800" type="text" placeholder="Usuario" autocomplete="off" autocapitalize  value="fatfree" >
 					</div>
+					<!--field-->
 
-					<div class="w-full flex flex-col pt-3 pb-1 pl-3 pr-3 box-border">
-						<input class="box-boder bg-white rounded-md rounded-md:focus p-2.5 border-2 border-blue100 border-blue300:focus border-solid outline-none:focus outline-offset-2:focus text-bluegray800" type="password" placeholder="Contraseña" autocomplete="off" autocapitalize>
+					<!--field-->
+					<div class="w-full flex flex-col pt-3 pb-1 pl-3 pr-3 box-border flex ">
+						<p class="fixed pl-2 box-border mt-3"  ><i class="fas fa-key fa-md text-lightblue800"></i></p>
+						<input name="db_pass" class="box-boder bg-white rounded-md rounded-md:focus p-2.5 pl-8 border-2 border-blue100 border-blue300:focus border-solid outline-none:focus outline-offset-2:focus text-bluegray800" type="password" placeholder="Contraseña" autocomplete="off" autocapitalize value="password" >
 					</div>
+					<!--field-->
 
-					<div class="w-full flex flex-col pt-3 pb-1 pl-3 pr-3 box-border">
-						<input class="box-boder bg-white rounded-md rounded-md:focus p-2.5 border-2 border-blue100 border-blue300:focus border-solid outline-none:focus outline-offset-2:focus text-bluegray800" type="text" placeholder="Alojamineto" value="localhost" autocomplete="off" autocapitalize>
+
+					<!--field-->
+					<div class="w-full flex flex-col pt-3 pb-1 pl-3 pr-3 box-border flex ">
+						<p class="fixed pl-2 box-border mt-3"  ><i class="fas fa-server fa-md text-lightblue800"></i></p>
+						<input name="db_host" class="box-boder bg-white rounded-md rounded-md:focus p-2.5 pl-8 border-2 border-blue100 border-blue300:focus border-solid outline-none:focus outline-offset-2:focus text-bluegray800" type="text" placeholder="Alojamiento" value="localhost" autocomplete="off" autocapitalize >
+						<input name="db_port" type="hidden" value="3306">
 					</div>
+					<!--field-->
 
 				</div>
 				<!--content-->
 				<div class="w-full pl-3 pr-3 box-border pb-4 pt-4">
 					<!--<a href="/login/password-reset">¿ Olvidaste tu contraseña ?</a>-->
-					<button onclick="window.location.href='/install/status-install'" class="blue700 blue800:hover w-full box-border text-white pt-2.5 pb-2.5 aoutline-none border-none rounded-lg cursor-pointer" >Conectar</button>
+					<button type="submit"  class="blue700 blue800:hover w-full box-border text-white pt-2.5 pb-2.5 aoutline-none border-none rounded-lg cursor-pointer" >Conectar</button>
 				</div>
+			</form>
 		</div>
 
 </body>

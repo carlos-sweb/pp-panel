@@ -18,27 +18,27 @@ AbstractDeviceParser::setVersionTruncation(AbstractDeviceParser::VERSION_TRUNCAT
 class Login{
   // -----------------------------------------------------------------------
   function __construct($f3){
+
+    if( !file_exists(__DIR__.'/../config/database/mysql.php') ){
+          $f3->reroute("/install");
+    }
+
     // -------------------------------------------------------------------------------------------
     if( $f3->exists("SESSION.user_id")  ){ $f3->reroute("/admin"); }
     // --------------------------------------------------------------------------------------------
     try{
-
       $f3->set('DB', new \DB\SQL('mysql:host='.$f3->get('DB_HOST').';port='.$f3->get('DB_PORT').';dbname='.$f3->get('DB_NAME'),$f3->get('DB_USER'),$f3->get('DB_PASS'),[
         \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION ,
         \PDO::ATTR_PERSISTENT => TRUE ,
         \PDO::MYSQL_ATTR_COMPRESS => TRUE ,
       ]));
-
     }catch( PDOException $Exception ){
-
         $f3->set('DB_ERROR',true);
         $f3->set('DB_ERROR_MESSAGE', $Exception->getMessage( ) );
         $f3->set('DB_ERROR_CODE',$Exception->getCode( ) );
-
     }
 
     // --------------------------------------------------------------------------------------------
-
     $this->css_base = require __DIR__.'/views/login/css.php';
   }
   // -----------------------------------------------------------------------

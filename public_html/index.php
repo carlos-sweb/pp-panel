@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Santiago');
 require __DIR__.'/../vendor/autoload.php';
 $config_db = file_exists(__DIR__.'/../config/database/mysql.php') ? require __DIR__.'/../config/database/mysql.php' : ['DB_NAME'=>'','DB_USER'=>'','DB_PASS'=>'','DB_HOST'=>'','DB_PORT'=>''];
 

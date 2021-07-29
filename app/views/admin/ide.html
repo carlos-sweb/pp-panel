@@ -21,8 +21,6 @@
       <textarea  id="ide" name="name" rows="8" cols="80" ></textarea>
     </div>
 </div>
-
-
 <script src="/node_modules/codemirror/lib/codemirror.js" ></script>
 <script src="/node_modules/codemirror/mode/javascript/javascript.js" ></script>
 <script>
