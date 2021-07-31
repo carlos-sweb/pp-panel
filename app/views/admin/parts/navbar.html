@@ -12,7 +12,7 @@
           <span>&nbsp;</span>
       </div>
 
-      <div class="align-center flex flex-grow-0 flex-shrink-0 pr-4 pl-4 leading-3 lightblue600:hover cursor-pointer">
+      <div class="xs:hidden align-center flex flex-grow-0 flex-shrink-0 pr-4 pl-4 leading-3 lightblue600:hover cursor-pointer">
           <p class="text-md font-tsemiboldhin" >Carlos</p>&nbsp;
           <p><i class="fas fa-chevron-down fa-lg cursor-pointer"></i></p>
       </div>

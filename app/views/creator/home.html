@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es" xml:lang="es" class="bc-white h-full">
+<head>
+<meta charset="utf-8">
+	<link rel="icon" type="image/png" href="favicon.png">
+	<!--aqui van los metas-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>STIX-TV - Creator</title>
+	<repeat group="{{ @css }}" value="{{ @link }}" >
+		<link rel="stylesheet" href="{{ @link }}"/>
+	</repeat>
+</head>
+<body class="bc-white h-full" >
+
+<include href="admin/parts/navbar.html" />
+
+<div class="w-full h-minfull flex flex-col">
+    <div class="w-full block pt-14"></div>
+    <div class="w-full box-border" >
+        <div class="w-full box-border flex flex-wrap flex-row pt-8 justify-end xs:justify-center">
+              <div class="flex pr-8"  >
+                <button class="p-3 green400 green500:hover text-gray50 rounded cursor-pointer border-0 elevation-1 text-sm font-bold"><i class="fas fa-plus"></i>&nbsp;Projecto Nuevo</button>
+              </div>
+        </div>
+        <div class="w-full box-border flex flex-wrap flex-row items-stretch pt-8 justify-center">
+              <div class="flex flex-col">
+                  <div class="flex flex-col text-center"><i class="far fa-folder-open text-bluegray200" style="font-size:18rem;" ></i></div>
+                  <div class="flex flex-col text-center"><p class="text-2xl xs:text-lg italic" >Comienza tu primer projecto.</p></div>
+              </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>
