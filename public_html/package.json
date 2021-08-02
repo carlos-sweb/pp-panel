@@ -15,6 +15,8 @@
     "codemirror": "^5.62.2",
     "normalize.css": "^8.0.1",
     "pp-drawer.js": "^1.0.5",
+    "pp-events": "^1.0.9",
+    "pp-model.js": "^1.0.9",
     "pp-router.js": "^1.0.7"
   }
 }

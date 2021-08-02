@@ -15,7 +15,7 @@
 
 		<div class="flex flex-col w-1/4 xs:w-full sm:w-2/4 md:w-3/6 box-border elevation-4 rounded mt-20"  >
 
-			<form action="/" method="post" >
+			<form pp-form='login' action="/" method="post" >
 
 			<div class="w-full flex items-stretch flex-shrink-0 h-13 lightblue700 text-white rounded-tr rounded-tl">
 				<div class="w-full box-border align-stretch flex flex-shrink-0 h-13">
@@ -43,14 +43,19 @@
 					</div>
 
 				</div>
-								
+
 				<!--content-->
 				<div class="w-full pl-3 pr-3 box-border pb-3 pt-3">
 					<!--<a href="/login/password-reset">¿ Olvidaste tu contraseña ?</a>-->
-					<button type="submit" class="blue700 blue800:hover w-full box-border text-white pt-2.5 pb-2.5 aoutline-none border-none rounded-lg cursor-pointer" >Acceder</button>
+					<button disabled type="submit" class="blue200:disabled blue700 w-full box-border text-white pt-2.5 pb-2.5 aoutline-none border-none rounded-lg cursor-pointer cursor-not-allowed:disabled" >Acceder</button>
 				</div>
 
 				</form>
 		</div>
+
+		<?php foreach (($js?:[]) as $link): ?>
+			<script type="text/javascript" src="<?= ($link) ?>" ></script>
+		<?php endforeach; ?>
+
 </body>
 </html>

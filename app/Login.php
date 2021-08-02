@@ -39,7 +39,9 @@ class Login{
     }
 
     // --------------------------------------------------------------------------------------------
-    $this->css_base = require __DIR__.'/views/login/css.php';
+    $this->css_base = file_exists(__DIR__.'/views/login/css.php') ? require __DIR__.'/views/login/css.php' : [];
+    $this->js_base = file_exists(__DIR__.'/views/login/js.php') ? require __DIR__.'/views/login/js.php' : [];
+
   }
   // -----------------------------------------------------------------------
   public function minifer($code){
@@ -73,38 +75,45 @@ class Login{
     }
   }
 
+  /**
+  *@name login
+  *@description  funcion que muestra la vista del formulario de login
+  *formulario principal
+  */
   public function login($f3){
-
+      /*
       $dd = new DeviceDetector($f3->get("AGENT"));
       $dd->parse();
 
       if ($dd->isBot()) {
-        // handle bots,spiders,crawlers,...
         $botInfo = $dd->getBot();
-
       } else {
-
-        $clientInfo = $dd->getClient(); // holds information about browser, feed reader, media player, ...
+        $clientInfo = $dd->getClient();
         $osInfo = $dd->getOs();
         $device = $dd->getDeviceName();
         $brand = $dd->getBrandName();
         $model = $dd->getModel();
-
-      }
+      }*/
 
       $f3->set("css",$this->css_base);
-      echo $f3->get('DB_ERROR') ? $this->minifer(Template::instance()->render('error/db_connection.html')) : $this->minifer(Template::instance()->render('login/login.html'));
+      $f3->set("js",[
+        'node_modules/axios/dist/axios.min.js',
+        'node_modules/pp-events/pp-events.min.js',
+        'node_modules/pp-model.js/pp-model.min.js',
+        'js/login/login.js'
+      ]);
+      //echo $f3->get('DB_ERROR') ? $this->minifer(Template::instance()->render('error/db_connection.html')) : $this->minifer(Template::instance()->render('login/login.html'));
+      echo Template::instance()->render('login/login.html');
+
   }
   // -----------------------------------------------------------------------
   // -----------------------------------------------------------------------
   public function password_reset($f3){
     $f3->set("css",$this->css_base);
-    $f3->set("rand",rand(1,550505050050500));
     echo $this->minifer(Template::instance()->render('login/password_reset.html'));
   }
   public function password_reset_validate($f3){
     $f3->set("css",$this->css_base);
-    $f3->set("rand",rand(1,550505050050500));
     echo $this->minifer(Template::instance()->render('login/password_reset_validate.html'));
   }
   // -----------------------------------------------------------------------
