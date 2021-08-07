@@ -57,22 +57,41 @@ class Login{
           $code
         );
   }
-  // -----------------------------------------------------------------------
+  // ---------------------------------------------------------------------------
   public function loginVerify( $f3 ){
 
-    $user     = new User();
-    $auth     = new \Auth( $user , array('id' => 'mail', 'pw' => 'password'));
-    $isLoggin = $auth->login($f3->get("POST.mail"),$f3->get("POST.password"));
+    $dd = new DeviceDetector($f3->get("AGENT"));
+    $dd->parse();
+    //==========================================================================
+    if ($dd->isBot()) {
 
-    if(  $isLoggin ){
-      $f3->set("SESSION.user_id",$user->id);
-      $f3->set("SESSION.user_name",$user->name);
-      $f3->set("SESSION.user_mail",$user->mail);
-      $f3->set("SESSION.user_profile",$user->profile);
-      $f3->reroute("/admin");
-    }else{
-      echo "Incorrecto";
-    }
+      $botInfo = $dd->getBot();
+
+    } else {
+      $clientInfo = $dd->getClient();
+      $osInfo = $dd->getOs();
+      $device = $dd->getDeviceName();
+      //$brand = $dd->getBrandName();
+      //$model = $dd->getModel();
+
+      $user     = new User();
+      $auth     = new \Auth( $user , array('id' => 'mail', 'pw' => 'password'));
+      $isLoggin = $auth->login($f3->get("POST.mail"),$f3->get("POST.password"));
+
+      if(  $isLoggin ){
+        /*
+        $f3->set("SESSION.user_id",$user->id);
+        $f3->set("SESSION.user_name",$user->name);
+        $f3->set("SESSION.user_mail",$user->mail);
+        $f3->set("SESSION.user_profile",$user->profile);
+        $f3->reroute("/admin");
+        */
+      }else{
+        echo "Incorrecto";
+      }
+
+    } // Detectamos que no sea un robot
+
   }
 
   /**
@@ -81,19 +100,6 @@ class Login{
   *formulario principal
   */
   public function login($f3){
-      /*
-      $dd = new DeviceDetector($f3->get("AGENT"));
-      $dd->parse();
-
-      if ($dd->isBot()) {
-        $botInfo = $dd->getBot();
-      } else {
-        $clientInfo = $dd->getClient();
-        $osInfo = $dd->getOs();
-        $device = $dd->getDeviceName();
-        $brand = $dd->getBrandName();
-        $model = $dd->getModel();
-      }*/
 
       $f3->set("css",$this->css_base);
       $f3->set("js",[
@@ -102,8 +108,11 @@ class Login{
         'node_modules/pp-model.js/pp-model.min.js',
         'js/login/login.js'
       ]);
-      //echo $f3->get('DB_ERROR') ? $this->minifer(Template::instance()->render('error/db_connection.html')) : $this->minifer(Template::instance()->render('login/login.html'));
-      echo Template::instance()->render('login/login.html');
+
+      echo $f3->get('DB_ERROR') ? $this->minifer(Template::instance()->render('error/db_connection.html')) : $this->minifer(Template::instance()->render('login/login.html'));
+      //echo Template::instance()->render('login/login.html');
+
+
 
   }
   // -----------------------------------------------------------------------
