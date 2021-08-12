@@ -68,11 +68,11 @@ class Login{
       $botInfo = $dd->getBot();
 
     } else {
+
       $clientInfo = $dd->getClient();
       $osInfo = $dd->getOs();
       $device = $dd->getDeviceName();
-      //$brand = $dd->getBrandName();
-      //$model = $dd->getModel();
+
 
       $user     = new User();
       $auth     = new \Auth( $user , array('id' => 'mail', 'pw' => 'password'));

@@ -47,7 +47,7 @@
 				<!--content-->
 				<div class="w-full pl-3 pr-3 box-border pb-3 pt-3">
 					<!--<a href="/login/password-reset">¿ Olvidaste tu contraseña ?</a>-->
-					<button  type="submit" class="blue200:disabled blue700 w-full box-border text-white pt-2.5 pb-2.5 aoutline-none border-none rounded-lg cursor-pointer cursor-not-allowed:disabled" >Acceder</button>
+					<button type="submit" class="blue200:disabled blue700 w-full box-border text-white pt-2.5 pb-2.5 aoutline-none border-none rounded-lg cursor-pointer cursor-not-allowed:disabled" >Acceder</button>
 				</div>
 
 				</form>
