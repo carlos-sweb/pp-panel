@@ -8,6 +8,22 @@ use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
 require __DIR__."/models/Users.php";
 
+
+
+
+
+class UserDevices extends \DB\SQL\Mapper {
+	public function __construct() {
+		parent::__construct( \Base::instance()->get('DB'), 'UsersDevices', [
+
+      "user_id","name","ip","client","os","engine","created_at"
+
+      ] );
+	}
+}
+
+
+
 use DeviceDetector\DeviceDetector;
 use DeviceDetector\Parser\Device\AbstractDeviceParser;
 // OPTIONAL: Set version truncation to none, so full versions will be returned
@@ -43,6 +59,33 @@ class Login{
     $this->js_base = file_exists(__DIR__.'/views/login/js.php') ? require __DIR__.'/views/login/js.php' : [];
 
   }
+
+  public function getUserIP()
+  {
+      // Get real visitor IP behind CloudFlare network
+      if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+                $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+                $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+      }
+      $client  = @$_SERVER['HTTP_CLIENT_IP'];
+      $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+      $remote  = $_SERVER['REMOTE_ADDR'];
+
+      if(filter_var($client, FILTER_VALIDATE_IP))
+      {
+          $ip = $client;
+      }
+      elseif(filter_var($forward, FILTER_VALIDATE_IP))
+      {
+          $ip = $forward;
+      }
+      else
+      {
+          $ip = $remote;
+      }
+
+      return $ip;
+  }
   // -----------------------------------------------------------------------
   public function minifer($code){
         return preg_replace(
@@ -64,21 +107,56 @@ class Login{
     $dd->parse();
     //==========================================================================
     if ($dd->isBot()) {
-
+      // En caso que sea un boot
       $botInfo = $dd->getBot();
 
     } else {
 
-      $clientInfo = $dd->getClient();
-      $osInfo = $dd->getOs();
-      $device = $dd->getDeviceName();
-
+      $crypt = \Bcrypt::instance();
+      $UserDevice = [];
+      $UserDevice["os"] = $dd->getOs()["name"];
+      $UserDevice["client"] = $dd->getClient()["name"];
+      $UserDevice["engine"] = $dd->getClient()["engine"];
+      $UserDevice["ip"] = $this->getUserIP();
+      $UserDevice["device"] = $dd->getDeviceName();
+      // Como hash deveriamos pasar los datos del despositivo
+      $UserDevice["token"] = $crypt->hash("hello");
 
       $user     = new User();
       $auth     = new \Auth( $user , array('id' => 'mail', 'pw' => 'password'));
       $isLoggin = $auth->login($f3->get("POST.mail"),$f3->get("POST.password"));
 
+
       if(  $isLoggin ){
+
+
+        $d = new UserDevices();
+
+
+        $d->insert(array(
+          "user_id"=>1,
+          "name"=>"Oficina",
+          "ip"=>"192.168.766.1",
+          "client"=>1,
+          "os"=>32,
+          "engine"=>2
+        ));
+
+        $d->save();
+        $d->load( [ "user_id = ? ", $user->id ]  );
+        echo "La cantidad de registros son ".$d->count();
+
+
+
+
+        echo "<pre>";
+        print_r( $d->get("engine") ) ;
+        echo "</pre>";
+
+        echo "<pre>";
+        print_r($UserDevice);
+        echo "</pre>";
+
         /*
         $f3->set("SESSION.user_id",$user->id);
         $f3->set("SESSION.user_name",$user->name);
@@ -86,8 +164,15 @@ class Login{
         $f3->set("SESSION.user_profile",$user->profile);
         $f3->reroute("/admin");
         */
+
       }else{
+
+        echo "<pre>";
+        print_r($UserTryLogin);
+        echo "</pre>";
         echo "Incorrecto";
+
+
       }
 
     } // Detectamos que no sea un robot
@@ -102,6 +187,7 @@ class Login{
   public function login($f3){
 
       $f3->set("css",$this->css_base);
+
       $f3->set("js",[
         'node_modules/axios/dist/axios.min.js',
         'node_modules/pp-events/pp-events.min.js',
@@ -109,10 +195,9 @@ class Login{
         'js/login/login.js'
       ]);
 
+
       echo $f3->get('DB_ERROR') ? $this->minifer(Template::instance()->render('error/db_connection.html')) : $this->minifer(Template::instance()->render('login/login.html'));
       //echo Template::instance()->render('login/login.html');
-
-
 
   }
   // -----------------------------------------------------------------------

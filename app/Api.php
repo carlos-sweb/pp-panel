@@ -11,13 +11,17 @@ class Api{
   // -----------------------------------------------------------------------
   public function api($f3){
 
-    $data = [
-        "loggin"=>false,
-        "fruits"=>['apple','orange','pineapple']
-    ];
-
+    $data = explode(",","WebKit, Blink, Trident, Text-based, Dillo, iCab, Elektra, Presto, Gecko, KHTML, NetFront, Edge, NetSurf, Servo, Goanna, EkiohFlow");
+    /*
     header('Content-Type: application/json');
     echo json_encode($data);
+    */
+
+    foreach ($data as $key => $value) {
+      echo "(\"".trim($value)."\"),";
+    }
+
+
 
   }
 }

@@ -17,6 +17,7 @@ class Install{
         '/css/font.css',
         '/css/style.css'
     ];
+    
   }
   // -----------------------------------------------------------------------
   public function minifer($code){
@@ -34,6 +35,7 @@ class Install{
   }
   // -----------------------------------------------------------------------
   public function welcome($f3){
+
     $f3->set("css",$this->css_base);
     $f3->set("rand",rand(1,550505050050500));
     echo $this->minifer(Template::instance()->render('install/welcome.html'));

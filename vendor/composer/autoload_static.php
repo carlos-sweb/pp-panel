@@ -10,11 +10,15 @@ class ComposerStaticInite4330af1eacef870eab7bffde775394f
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '04c6c5c2f7095ccf6c481d3e53e1776f' => __DIR__ . '/..' . '/mustangostang/spyc/Spyc.php',
+        'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'S' => 
         array (
+            'Symfony\\Polyfill\\Php80\\' => 23,
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Ctype\\' => 23,
             'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\Filesystem\\' => 29,
@@ -26,6 +30,14 @@ class ComposerStaticInite4330af1eacef870eab7bffde775394f
     );
 
     public static $prefixDirsPsr4 = array (
+        'Symfony\\Polyfill\\Php80\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
+        ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
         'Symfony\\Polyfill\\Ctype\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
@@ -45,6 +57,7 @@ class ComposerStaticInite4330af1eacef870eab7bffde775394f
     );
 
     public static $classMap = array (
+        'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Audit' => __DIR__ . '/..' . '/bcosca/fatfree-core/audit.php',
         'Auth' => __DIR__ . '/..' . '/bcosca/fatfree-core/auth.php',
         'Base' => __DIR__ . '/..' . '/bcosca/fatfree-core/base.php',
@@ -76,9 +89,12 @@ class ComposerStaticInite4330af1eacef870eab7bffde775394f
         'Registry' => __DIR__ . '/..' . '/bcosca/fatfree-core/base.php',
         'SMTP' => __DIR__ . '/..' . '/bcosca/fatfree-core/smtp.php',
         'Session' => __DIR__ . '/..' . '/bcosca/fatfree-core/session.php',
+        'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'Template' => __DIR__ . '/..' . '/bcosca/fatfree-core/template.php',
         'Test' => __DIR__ . '/..' . '/bcosca/fatfree-core/test.php',
         'UTF' => __DIR__ . '/..' . '/bcosca/fatfree-core/utf.php',
+        'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
+        'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
         'View' => __DIR__ . '/..' . '/bcosca/fatfree-core/base.php',
         'Web' => __DIR__ . '/..' . '/bcosca/fatfree-core/web.php',
         'Web\\Geo' => __DIR__ . '/..' . '/bcosca/fatfree-core/web/geo.php',
