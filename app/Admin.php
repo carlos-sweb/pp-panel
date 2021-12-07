@@ -48,6 +48,7 @@ class Admin{
         $f3->clear("SESSION.user_name");
         $f3->clear("SESSION.user_mail");
         $f3->clear("SESSION.user_profile");
+        $f3->clear("SESSION.user_token");
         $f3->reroute("/");
 
   }

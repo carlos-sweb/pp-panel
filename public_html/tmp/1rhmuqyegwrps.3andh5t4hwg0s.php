@@ -26,7 +26,7 @@
 				<!--content-->
 				<div class="p-3" >
 
-				<p>Te damos una coordial bienvenida, instalar stix-tv es muy facil.</p>
+				<p>Te damos una coordial bienvenida, instalar Power Panel es muy facil.</p>
 				<p>Necesitaremos la siguiente información de la base de datos para comenzar la instalación:</p>
 				<ul>
 					<li>Nombre de la base de datos</li>

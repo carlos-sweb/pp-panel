@@ -14,9 +14,17 @@
 
 <include href="admin/parts/navbar.html" />
 
+
 <div class="w-full h-minfull flex flex-col">
     <div class="w-full block pt-14"></div>
     <div class="w-full pl-8 pr-8 box-border pb-16" id="view">
+
+
+	<h1>{{ @SESSION.user_name }}</h1>
+	<h1>{{ @SESSION.user_token }}</h1>
+
+
+
 	<a href="/admin/logout">Salir</a>
       <h1>Admin</h1>
       <h3><a href="#/branches">Sucursales</a></h3>

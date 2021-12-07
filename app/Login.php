@@ -7,20 +7,8 @@ use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Filesystem\Exception\IOExceptionInterface;
 use Symfony\Component\Filesystem\Filesystem;
 require __DIR__."/models/Users.php";
-
-
-
-
-
-class UserDevices extends \DB\SQL\Mapper {
-	public function __construct() {
-		parent::__construct( \Base::instance()->get('DB'), 'UsersDevices', [
-
-      "user_id","name","ip","client","os","engine","created_at"
-
-      ] );
-	}
-}
+require __DIR__."/models/UsersDevices.php";
+require __DIR__."/models/UsersSession.php";
 
 
 
@@ -113,14 +101,8 @@ class Login{
     } else {
 
       $crypt = \Bcrypt::instance();
-      $UserDevice = [];
-      $UserDevice["os"] = $dd->getOs()["name"];
-      $UserDevice["client"] = $dd->getClient()["name"];
-      $UserDevice["engine"] = $dd->getClient()["engine"];
-      $UserDevice["ip"] = $this->getUserIP();
-      $UserDevice["device"] = $dd->getDeviceName();
       // Como hash deveriamos pasar los datos del despositivo
-      $UserDevice["token"] = $crypt->hash("hello");
+      //$UserDevice["token"] = $crypt->hash("hello");
 
       $user     = new User();
       $auth     = new \Auth( $user , array('id' => 'mail', 'pw' => 'password'));
@@ -129,48 +111,29 @@ class Login{
 
       if(  $isLoggin ){
 
+        $UserDevice = [];
+        $UserDevice["user_id"] = $user->id;
+        $UserDevice["name"] = "nameless";
+        $UserDevice["os"] = $dd->getOs()["name"];
+        $UserDevice["client"] = $dd->getClient()["name"];
+        $UserDevice["engine"] = $dd->getClient()["engine"];
+        $UserDevice["ip"] = $this->getUserIP();
+        $UserDevice["device"] = $dd->getDeviceName();
 
-        $d = new UserDevices();
+        $dd = new UserDevices(  $f3->get("DB") , $UserDevice );
 
+        $us = new UserSession( $f3->get("DB") , $dd );
 
-        $d->insert(array(
-          "user_id"=>1,
-          "name"=>"Oficina",
-          "ip"=>"192.168.766.1",
-          "client"=>1,
-          "os"=>32,
-          "engine"=>2
-        ));
-
-        $d->save();
-        $d->load( [ "user_id = ? ", $user->id ]  );
-        echo "La cantidad de registros son ".$d->count();
-
-
-
-
-        echo "<pre>";
-        print_r( $d->get("engine") ) ;
-        echo "</pre>";
-
-        echo "<pre>";
-        print_r($UserDevice);
-        echo "</pre>";
-
-        /*
         $f3->set("SESSION.user_id",$user->id);
         $f3->set("SESSION.user_name",$user->name);
         $f3->set("SESSION.user_mail",$user->mail);
         $f3->set("SESSION.user_profile",$user->profile);
+        $f3->set("SESSION.user_token",$us->get("token"));
         $f3->reroute("/admin");
-        */
 
       }else{
 
-        echo "<pre>";
-        print_r($UserTryLogin);
-        echo "</pre>";
-        echo "Incorrecto";
+        echo "Error de Login";
 
 
       }
