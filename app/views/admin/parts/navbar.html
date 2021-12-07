@@ -1,8 +1,8 @@
 <div class="w-full flex fixed items-stretch flex-shrink-0 h-13 lightblue700 text-white elevation-2">
   <div class="w-full box-border align-stretch flex flex-shrink-0 h-13">
 
-      <div class="align-center flex flex-grow-0 flex-shrink-0 pl-4 leading-3">
-          <p><i class="fas fa-bars fa-lg cursor-pointer"></i></p>
+      <div class="align-center flex flex-grow-0 flex-shrink-0 pl-4 leading-3" >
+          <p onclick="drawer.open()"><i class="fas fa-bars fa-lg cursor-pointer"></i></p>
       </div>
       <div class="align-center flex flex-grow-0 flex-shrink-0 pl-4 leading-3">
           <h3>Power Panel</h3>

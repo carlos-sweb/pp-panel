@@ -12,6 +12,13 @@
 </head>
 <body class="bc-white h-full" >
 
+	<div drawer-id="main" class="pp-drawer hidden_drawer drawer-shadow">
+		<?php echo $this->render('admin/parts/drawer.profile.html',NULL,get_defined_vars(),0); ?>
+		<?php echo $this->render('admin/parts/drawer.menu.html',NULL,get_defined_vars(),0); ?>
+	</div>
+	<div drawer-id="main" class="pp-drawer-scrim hidden"></div>
+
+
 <?php echo $this->render('admin/parts/navbar.html',NULL,get_defined_vars(),0); ?>
 
 
@@ -26,22 +33,15 @@
 
 
 	<a href="/admin/logout">Salir</a>
-      <h1>Admin</h1>
-      <h3><a href="#/branches">Sucursales</a></h3>
-      <h3><a href="#/players">Player</a></h3>
-      <h3><a href="#/medias">Media</a></h3>
-      <h3><a href="#/playlist">Parrilla</a></h3>
-      <h3><a href="#/rss">Rss</a></h3>
-      <h3><a href="#/vod">V.O.D</a></h3>
-      <h3><a href="#/planning">Planificacion</a></h3>
-      <h3><a href="#/status">Status</a></h3>
-      <h3><a href="#/report">Reportes</a></h3>
+
 
     </div>
 </div>
 
-
-
-
+<link rel="stylesheet" href="node_modules/pp-drawer.js/pp-drawer.min.css">
+<script type="text/javascript" src="node_modules/pp-drawer.js/pp-drawer.min.js"></script>
+<script type="text/javascript" >
+	var drawer = new ppDrawer("main")
+</script>
 </body>
 </html>
