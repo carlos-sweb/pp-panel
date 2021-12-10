@@ -20,7 +20,7 @@
 			<div class="w-full flex items-stretch flex-shrink-0 h-13 lightblue700 text-white rounded-tr rounded-tl">
 				<div class="w-full box-border align-stretch flex flex-shrink-0 h-13">
 						<div class="align-center flex flex-grow flex-shrink-0 pl-4 leading-3 text-center">
-								<h3>Acceso</h3>
+								<h3>{{ @login.titleForm }}</h3>
 						</div>
 				</div>
 			</div>
@@ -47,12 +47,20 @@
 				<!--content-->
 				<div class="w-full pl-3 pr-3 box-border pb-3 pt-3">
 					<!--<a href="/login/password-reset">¿ Olvidaste tu contraseña ?</a>-->
-					<button type="submit" class="blue200:disabled blue700 w-full box-border text-white pt-2.5 pb-2.5 aoutline-none border-none rounded-lg cursor-pointer cursor-not-allowed:disabled" >Acceder</button>
+					<button type="submit" class="blue200:disabled blue700 w-full box-border text-white pt-2.5 pb-2.5 aoutline-none border-none rounded-lg cursor-pointer cursor-not-allowed:disabled" >{{ @login.labelBotton }}</button>
 				</div>
-
 				</form>
 		</div>
-		
+
+			<!--
+		 <img src="img/core/lang/es.svg" alt="" style="width:40px;" >
+		 <select name="" id="">
+		 	<option value="">Español</option>
+			<option value="">Ingles</option>
+		 </select>
+		 <!-->
+
+
 
 		<repeat group="{{ @js }}" value="{{ @link }}" >
 			<script type="text/javascript" src="{{ @link }}" ></script>

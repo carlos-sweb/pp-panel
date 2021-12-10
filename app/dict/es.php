@@ -1,6 +1,11 @@
 <?php
 return array(
-    'hello' => 'Hola',
-    'world' => 'Mundo',
+    'login' => array(
+      'titleForm' =>'Access',
+      'labelMail' => 'E-Mail',
+      'labelPassword' => 'Password',
+      'labelBotton' => 'Login',
+      'labelForgetPassword' => '¿ forget you password ?'
+    )
 );
 ?>

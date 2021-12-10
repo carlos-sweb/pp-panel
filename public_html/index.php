@@ -13,7 +13,7 @@ $f3 = \Base::instance();
 new Session();
 
 $f3->set('LOCALES','../app/dict/');
-$f3->set('LANGUAGE','es');
+$f3->set('LANGUAGE','en');
 
 $f3->config(__DIR__.'/../routes.ini');
 $f3->config(__DIR__.'/../config.ini',true);
