@@ -149,6 +149,13 @@ class Login{
   */
   public function login($f3){
 
+  
+
+
+    echo "Otra cosa podria ser";
+    echo $f3->get("hello");
+
+    /*
       $f3->set("css",$this->css_base);
 
       $f3->set("js",[
@@ -161,7 +168,7 @@ class Login{
 
       echo $f3->get('DB_ERROR') ? $this->minifer(Template::instance()->render('error/db_connection.html')) : $this->minifer(Template::instance()->render('login/login.html'));
       //echo Template::instance()->render('login/login.html');
-
+      */
   }
   // -----------------------------------------------------------------------
   // -----------------------------------------------------------------------

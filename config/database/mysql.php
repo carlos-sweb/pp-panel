@@ -1,5 +1,5 @@
 <?php
-/*created : 2021-12-06 21:12:55 */
+/*created : 2021-12-09 21:12:59 */
 return [
    'DB_NAME'=>'stix',
    'DB_USER'=>'fatfree',

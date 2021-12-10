@@ -53,6 +53,8 @@
 				</form>
 		</div>
 
+		<h1><?= ($hello) ?></h1>
+
 		<?php foreach (($js?:[]) as $link): ?>
 			<script type="text/javascript" src="<?= ($link) ?>" ></script>
 		<?php endforeach; ?>
