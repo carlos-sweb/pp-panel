@@ -3,7 +3,6 @@
 <h3><a href="/admin/database">Base de Datos</a></h3>
 
 
-
 <h1>Admin</h1>
 <h3><a href="#/branches">Sucursales</a></h3>
 <h3><a href="#/players">Player</a></h3>

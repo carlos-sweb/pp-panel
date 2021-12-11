@@ -11,7 +11,6 @@ require __DIR__."/models/UsersDevices.php";
 require __DIR__."/models/UsersSession.php";
 
 
-
 use DeviceDetector\DeviceDetector;
 use DeviceDetector\Parser\Device\AbstractDeviceParser;
 // OPTIONAL: Set version truncation to none, so full versions will be returned
@@ -150,8 +149,10 @@ class Login{
   public function login($f3){
 
 
-      $f3->set("css",$this->css_base);
+      $f3->exists('PARAMS.lang') ? $f3->set('LANGUAGE',$f3->get('PARAMS.lang')) :
+      $f3->reroute("/es");
 
+      $f3->set("css",$this->css_base);
       $f3->set("js",[
         'node_modules/axios/dist/axios.min.js',
         'node_modules/pp-events/pp-events.min.js',
@@ -159,7 +160,9 @@ class Login{
         'js/login/login.js'
       ]);
 
+
       echo $f3->get('DB_ERROR') ? $this->minifer(Template::instance()->render('error/db_connection.html')) : $this->minifer(Template::instance()->render('login/login.html'));
+
       //echo Template::instance()->render('login/login.html');
   }
   // -----------------------------------------------------------------------

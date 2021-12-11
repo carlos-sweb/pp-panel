@@ -1,11 +1,17 @@
 <?php
 return array(
     'login' => array(
-      'titleForm' =>'Acceso',
-      'labelMail' => 'Correo Eléctronico',
-      'labelPassword' => 'Contraseña',
-      'labelBotton' => 'Acceder',
-      'labelForgetPassword' => '¿ Olvidó su Contraseña ?'
+      'titleForm' =>'Access',
+      'labelMail' => 'E-Mail',
+      'labelPassword' => 'Password',
+      'labelBotton' => 'Login',
+      'labelForgetPassword' => 'Forgot your password ?',
+      'logoLang' => 'en.svg',
+      'avalaibleLang' => array(
+        'es' => 'Spanish',
+        'en' => 'English',
+        'pt' => 'Portuguese'
+      )
     )
 );
 ?>
