@@ -47,6 +47,7 @@ class Login{
         $f3->set('DB_ERROR',true);
         $f3->set('DB_ERROR_MESSAGE', $Exception->getMessage( ) );
         $f3->set('DB_ERROR_CODE',$Exception->getCode( ) );
+
     }
 
     // --------------------------------------------------------------------------------------------
@@ -143,6 +144,7 @@ class Login{
         '/node_modules/pp-model.js/pp-model.min.js',
         '/js/login/login.js'
       ]);
+
       echo $f3->get('DB_ERROR') ? $this->minifer(Template::instance()->render('error/db_connection.html')) : $this->minifer(Template::instance()->render('login/login.html'));
   }
   // -----------------------------------------------------------------------
