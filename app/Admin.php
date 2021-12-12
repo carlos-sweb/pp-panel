@@ -37,9 +37,13 @@ class Admin{
 
   // -----------------------------------------------------------------------
   public function base($f3){
+
+    $f3->set("section",$f3->get("PARAMS.section"));
     $f3->set("css",$this->css_base);
     $f3->set("rand",rand(1,550505050050500));
     echo $this->minifer(Template::instance()->render('admin/base.html'));
+
+
   }
 
 
@@ -57,8 +61,8 @@ class Admin{
         $f3->clear("SESSION.user_mail");
         $f3->clear("SESSION.user_profile");
         $f3->clear("SESSION.user_token");
-        $f3->reroute("/");
-
+        $f3->reroute("/login");
+        
   }
 
   // -----------------------------------------------------------------------

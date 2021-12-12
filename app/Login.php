@@ -22,13 +22,21 @@ class Login{
   // -----------------------------------------------------------------------
   function __construct($f3){
 
+    // Creamos el csrf_token
+    // Para Protección de la sessión
+    if( !$f3->exists("SESSION.csrf_token") ){ $f3->set("SESSION.csrf_token",$f3->CSRF); };
+
+    // verificamos que exista los datos de configuración de la base de datos
     if( !file_exists(__DIR__.'/../config/database/mysql.php') ){
           $f3->reroute("/install");
     }
 
     // -------------------------------------------------------------------------------------------
+    // Verificamos que esta creado la session user_id significa el el usuario
+    // esta logeado y no necesita entrar al formulario de login
     if( $f3->exists("SESSION.user_id")  ){ $f3->reroute("/admin"); }
     // --------------------------------------------------------------------------------------------
+    // Tratamos de conectarnoos a la base de datos
     try{
       $f3->set('DB', new \DB\SQL('mysql:host='.$f3->get('DB_HOST').';port='.$f3->get('DB_PORT').';dbname='.$f3->get('DB_NAME'),$f3->get('DB_USER'),$f3->get('DB_PASS'),[
         \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION ,
@@ -42,36 +50,10 @@ class Login{
     }
 
     // --------------------------------------------------------------------------------------------
+    // Definimos la rutas necesesarias de css y js para los template
     $this->css_base = file_exists(__DIR__.'/views/login/css.php') ? require __DIR__.'/views/login/css.php' : [];
     $this->js_base = file_exists(__DIR__.'/views/login/js.php') ? require __DIR__.'/views/login/js.php' : [];
 
-  }
-
-  public function getUserIP()
-  {
-      // Get real visitor IP behind CloudFlare network
-      if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
-                $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
-                $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
-      }
-      $client  = @$_SERVER['HTTP_CLIENT_IP'];
-      $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
-      $remote  = $_SERVER['REMOTE_ADDR'];
-
-      if(filter_var($client, FILTER_VALIDATE_IP))
-      {
-          $ip = $client;
-      }
-      elseif(filter_var($forward, FILTER_VALIDATE_IP))
-      {
-          $ip = $forward;
-      }
-      else
-      {
-          $ip = $remote;
-      }
-
-      return $ip;
   }
   // -----------------------------------------------------------------------
   public function minifer($code){
@@ -89,6 +71,11 @@ class Login{
   }
   // ---------------------------------------------------------------------------
   public function loginVerify( $f3 ){
+
+    if( !($f3->get('SESSION.csrf_token') === $f3->get('POST.csrf_token')) ){
+        echo "Error Token csrf";
+        die();
+    }
 
     $dd = new DeviceDetector($f3->get("AGENT"));
     $dd->parse();
@@ -116,11 +103,10 @@ class Login{
         $UserDevice["os"] = $dd->getOs()["name"];
         $UserDevice["client"] = $dd->getClient()["name"];
         $UserDevice["engine"] = $dd->getClient()["engine"];
-        $UserDevice["ip"] = $this->getUserIP();
+        $UserDevice["ip"] = $f3->ip();
         $UserDevice["device"] = $dd->getDeviceName();
 
         $dd = new UserDevices(  $f3->get("DB") , $UserDevice );
-
         $us = new UserSession( $f3->get("DB") , $dd );
 
         $f3->set("SESSION.user_id",$user->id);
@@ -147,11 +133,9 @@ class Login{
   *formulario principal
   */
   public function login($f3){
-
-
+      // verificamos el IDIOMA
       $f3->exists('PARAMS.lang') ? $f3->set('LANGUAGE',$f3->get('PARAMS.lang')) :
-      $f3->reroute("/es");
-
+      $f3->reroute("/login/es");
       $f3->set("css",$this->css_base);
       $f3->set("js",[
         'node_modules/axios/dist/axios.min.js',
@@ -159,11 +143,7 @@ class Login{
         'node_modules/pp-model.js/pp-model.min.js',
         'js/login/login.js'
       ]);
-
-
       echo $f3->get('DB_ERROR') ? $this->minifer(Template::instance()->render('error/db_connection.html')) : $this->minifer(Template::instance()->render('login/login.html'));
-
-      //echo Template::instance()->render('login/login.html');
   }
   // -----------------------------------------------------------------------
   // -----------------------------------------------------------------------

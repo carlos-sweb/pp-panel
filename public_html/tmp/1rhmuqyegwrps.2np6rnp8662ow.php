@@ -26,13 +26,10 @@
     <div class="w-full block pt-14"></div>
     <div class="w-full pl-8 pr-8 box-border pb-16" id="view">
 
-
-	<h1><?= ($SESSION['user_name']) ?></h1>
-	<h1><?= ($SESSION['user_token']) ?></h1>
-
-
-
+	
 	<a href="/admin/logout">Salir</a>
+
+		<?php echo $this->render('admin/section/'.$section.'.html',NULL,get_defined_vars(),0); ?>
 
 
     </div>
