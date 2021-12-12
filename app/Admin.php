@@ -36,12 +36,20 @@ class Admin{
 
 
   // -----------------------------------------------------------------------
-  public function base($f3){
+  public function npm($f3){
+
+    $package = file_exists('package.json') ?
+    json_decode(file_get_contents( 'package.json' )) : array();
+
+
+
+
+    $f3->set("npm",$package);
 
     $f3->set("section",$f3->get("PARAMS.section"));
     $f3->set("css",$this->css_base);
     $f3->set("rand",rand(1,550505050050500));
-    echo $this->minifer(Template::instance()->render('admin/base.html'));
+    echo $this->minifer(Template::instance()->render('admin/section/npm.html'));
 
 
   }
@@ -62,7 +70,7 @@ class Admin{
         $f3->clear("SESSION.user_profile");
         $f3->clear("SESSION.user_token");
         $f3->reroute("/login");
-        
+
   }
 
   // -----------------------------------------------------------------------
