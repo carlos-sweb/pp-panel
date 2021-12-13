@@ -11,35 +11,19 @@
 	<?php endforeach; ?>
 </head>
 <body class="bc-white h-full" >
-
 	<div drawer-id="main" class="pp-drawer hidden_drawer drawer-shadow">
 		<?php echo $this->render('admin/parts/drawer.profile.html',NULL,get_defined_vars(),0); ?>
 		<?php echo $this->render('admin/parts/drawer.menu.html',NULL,get_defined_vars(),0); ?>
 	</div>
 	<div drawer-id="main" class="pp-drawer-scrim hidden"></div>
-
-
 <?php echo $this->render('admin/parts/navbar.html',NULL,get_defined_vars(),0); ?>
-
-
 <div class="w-full h-minfull flex flex-col">
     <div class="w-full block pt-14"></div>
-    <div class="w-full pl-8 pr-8 box-border pb-16" id="view">
-
-
-	<h1><?= ($SESSION['user_name']) ?></h1>
-	<h1><?= ($SESSION['user_token']) ?></h1>
-
-
-
-	<a href="/admin/logout">Salir</a>
-
-
-    </div>
+			<a href="/admin/logout">Salir</a>
+    <div class="w-full pl-8 pr-8 box-border pb-16" id="view"></div>
 </div>
 
 <link rel="stylesheet" href="node_modules/pp-drawer.js/pp-drawer.min.css">
-
 <script type="text/javascript" src="/node_modules/pp-is/pp-is.min.js" ></script>
 <script type="text/javascript" src="/node_modules/pp-events/pp-events.min.js" ></script>
 <script type="text/javascript" src="/node_modules/pp-model.js/pp-model.min.js" ></script>
