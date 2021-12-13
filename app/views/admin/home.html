@@ -39,9 +39,12 @@
 </div>
 
 <link rel="stylesheet" href="node_modules/pp-drawer.js/pp-drawer.min.css">
-<script type="text/javascript" src="node_modules/pp-drawer.js/pp-drawer.min.js"></script>
-<script type="text/javascript" >
-	var drawer = new ppDrawer("main")
-</script>
+
+<script type="text/javascript" src="/node_modules/pp-is/pp-is.min.js" ></script>
+<script type="text/javascript" src="/node_modules/pp-events/pp-events.min.js" ></script>
+<script type="text/javascript" src="/node_modules/pp-model.js/pp-model.min.js" ></script>
+<script type="text/javascript" src="/node_modules/pp-router.js/pp-router.min.js" ></script>
+<script type="text/javascript" src="/node_modules/pp-drawer.js/pp-drawer.min.js"></script>
+<script type="text/javascript" src="/js/admin.js" ></script>
 </body>
 </html>
