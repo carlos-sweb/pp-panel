@@ -139,13 +139,14 @@ class Login{
       $f3->reroute("/login/es");
       $f3->set("css",$this->css_base);
       $f3->set("js",[
+        '/node_modules/js-cookie/dist/js.cookie.min.js',
         '/node_modules/axios/dist/axios.min.js',
         '/node_modules/pp-events/pp-events.min.js',
         '/node_modules/pp-model.js/pp-model.min.js',
         '/js/login/login.js'
       ]);
 
-      echo $f3->get('DB_ERROR') ? $this->minifer(Template::instance()->render('error/db_connection.html')) : $this->minifer(Template::instance()->render('login/login.html'));
+      echo $f3->get('DB_ERROR') ? $this->minifer(Template::instance()->render('error/db_connection.html')) : $this->minifer(Template::instance()->render('login/login.html'));      
   }
   // -----------------------------------------------------------------------
   // -----------------------------------------------------------------------

@@ -1,5 +1,8 @@
 <repeat group="{{ @js }}" value="{{ @link }}" >
   <script type="text/javascript" src="{{ @link }}" ></script>
 </repeat>
+<script type="text/javascript">
+  if(  Cookies.get('mode') == '' ){ Cookies.set('mode', 'light'); }  
+</script>
 </body>
 </html>
