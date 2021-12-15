@@ -2,15 +2,14 @@
 
 <body class="bc-white h-full flex flex-col justify-start content-center items-center gray200 xs:pl-4 xs:pr-4" >
 
+<button class="elevation-2 absolute mt-5 bluegray700 w-10 box-border text-white pt-2.5 pb-2.5 aoutline-none border-none rounded-lg cursor-pointer cursor-not-allowed:disabled" >
+<i class="fas fa-moon fa-md text-bluegray50"></i>
+</button>
 
 		<div class="flex flex-col w-1/4 xs:w-full sm:w-2/4 md:w-3/6 box-border elevation-4 rounded mt-20"  >
 
-
 			<form pp-form='login' action="/login" method="post" >
-
 			<input type="hidden" value="<?= ($SESSION['csrf_token']) ?>" name="csrf_token" >
-
-
 			<div class="w-full flex items-stretch flex-shrink-0 h-13 lightblue700 text-white rounded-tr rounded-tl">
 				<div class="w-full box-border align-stretch flex flex-shrink-0 h-13">
 						<div class="align-center flex flex-grow flex-shrink-0 pl-4 leading-3 text-center">
